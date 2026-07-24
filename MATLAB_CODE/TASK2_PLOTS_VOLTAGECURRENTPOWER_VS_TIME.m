@@ -60,3 +60,9 @@ title('Power vs. Time');
 % To name the title
 grid on;
 % To display grid lines for visibility.
+
+sgtitle('Battery Charging Cycle: Voltage, Current, and Power');
+% To have a cumulative title summarizing the purpose of all 3 subplots.
+
+exportgraphics(fig, 'Task2_VoltageCurrentPower.png', 'Resolution', 300);
+% To save the visualization as a PNG image
