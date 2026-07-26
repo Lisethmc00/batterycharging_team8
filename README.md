@@ -1,6 +1,6 @@
 # batterycharging_team8
 **Descriptions**
-A MATLAB project that simulates lithium-ion battery charging with an RC circuit model. It includes plots and analysis of energy loss, and performance. The goal is to model lithium-ion battery charging profiles as a simplified RC circuits using real-world voltage data. By fitting the standard capacitor charging equation ```V(t) = V<sub>max</sub>(1 - e<sup>-t/RC</sup>)``` to the real dataset, we aim to model the charging behavior, accompanying the goodness-of-fit statistics for this RC circuit approximation.
+A MATLAB project that simulates lithium-ion battery charging with an RC circuit model. It includes plots and analysis of energy loss, and performance. The goal is to model lithium-ion battery charging profiles as a simplified RC circuits using real-world voltage data. By fitting the standard capacitor charging equation *V(t) = V<sub>max</sub>(1 - e<sup>-t/RC</sup>)* to the real dataset, we aim to model the charging behavior, accompanying the goodness-of-fit statistics for this RC circuit approximation.
 
 ## Methodologies
 Using the fitted RC model, we aim to:\
@@ -16,7 +16,7 @@ Temperature chamber at: 30 degrees Celsius. Single cell that is cycled to failur
 The bulk of the analysis will be focused on the first charging cycle.\
 
 ## Model data fit
-This code section plots the charging voltage response of a simple RC circuit across a 2000s econds window based on a defined input for maximum voltage V<sub>max</sub>, R, and C. Using the standard exponential charging formula ```V(t) = V<sub>max</sub>(1 - e<sup>-t/tau</sup>)```, it produces a curve showing the voltage approaching its maximum for the first charging cycle of the battery --- current decreasing as voltage rises, and power as the product of coltage adn current trends similar to that of the graph for current.\
+This code section plots the charging voltage response of a simple RC circuit across a 2000s econds window based on a defined input for maximum voltage V<sub>max</sub>, R, and C. Using the standard exponential charging formula *V(t) = V<sub>max</sub>(1 - e<sup>-t/tau</sup>)*, it produces a curve showing the voltage approaching its maximum for the first charging cycle of the battery --- current decreasing as voltage rises, and power as the product of coltage adn current trends similar to that of the graph for current.\
 ~~possibly let user adjust charging cycle~~\
 ~~let user adjust time it takes to reach certain voltage~~\
 
@@ -24,6 +24,7 @@ This code section plots the charging voltage response of a simple RC circuit acr
 ~~image here~~\
 
 *tau = RC* is the time constant of the RC circuit *time it takes to reach 63.2% of the maximum vaoltage which is 3.6v*, together with time *t*, were the two parameters used to fit the voltage data.\
+We can roughly see the inverse exponential curve for an ideal RC circuit besides for the drop in voltage inbetween.\
 Analyzing the goodness of fit statistics using the ```gof``` command, the fit yields\
 
 ```
@@ -35,12 +36,14 @@ gof = struct with fields:
           rmse: 0.2733
 ```
 
-~~discussing the sigificance~~
+~~discussing the sigificance~~\
+
+One interesting note is the shpae of the current's graph tends to stay constant or linear when the voltage is changing.
+This perfectly aligns with the behavior of a RC circuit during charging. For the capacitor the current is proportional to the rate of the change of the voltage by a constant *C*.\
+*i = C <ins>dv</ins><sub>dt</sub>*\
+Because the capacitor acts a short circuit when uncharged, the current flow is maximum at the beginning, and when the capacitor's voltage reaches the supply voltage, the current would be zero in the limit.\
 
 ## Rate of Change at key intervals
-One interesting note is the shpae of the current's graph tends to stay constant and linearly when the voltage is changing.
-This perfectly aligns with the behavior of a RC circuit during charging. For the capacitor the current is proportional to the rate of the change of the voltage by a constant *C*.\
-```i = C <ins>dv</ins><sub>dt</sub>```\
 By computing the rate of the change of voltage with respect to time ```dVdt= gradient(voltage, time)```, we expect to see the derivative of voltage vs time to resemeble a form more or less like that of the current.\
 ~~code~~\
 ~~image~~\
