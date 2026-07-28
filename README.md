@@ -15,7 +15,7 @@ The data is fetched from the Matlab internal files ```batteryagingdata/singlecel
 Temperature chamber at: 30 degrees Celsius. Single cell that is cycled to failure (80% state of health) in order to provide a comprehensive view of its performance over time. The cycling sequence exercises the battery cell with dynamic fast charging and constant 4C discharging. In each cycle, the battery is fully charged until it reaches 3.6V and fully discharged when it reaches 2V.\
 The bulk of the analysis will be focused on the first charging cycle.\
 
-## Model data fit
+## Model Data Fit
 This code section plots the charging voltage response of a simple RC circuit across a 2000s econds window based on a defined input for maximum voltage V<sub>max</sub>, R, and C. Using the standard exponential charging formula *V(t) = V<sub>max</sub>(1 - e<sup>-t/tau</sup>)*, it produces a curve showing the voltage approaching its maximum for the first charging cycle of the battery --- current decreasing as voltage rises, and power as the product of coltage adn current trends similar to that of the graph for current.\
 ~~possibly let user adjust charging cycle~~\
 ~~let user adjust time it takes to reach certain voltage~~\
@@ -43,12 +43,12 @@ This perfectly aligns with the behavior of a RC circuit during charging. For the
 *i = C <ins>dv</ins><sub>dt</sub>*\
 Because the capacitor acts a short circuit when uncharged, the current flow is maximum at the beginning, and when the capacitor's voltage reaches the supply voltage, the current would be zero in the limit.\
 
-## Rate of Change at key intervals
+## Rate of Change at Key Intervals
 By computing the rate of the change of voltage with respect to time ```dVdt= gradient(voltage, time)```, we expect to see the derivative of voltage vs time to resemeble a form more or less like that of the current.\
 ~~code~~\
 ~~image~~\
 
-## Power delievered to the battery
+## Power Delivered to the Battery
 The instantaneous power tells us how fast electrical energy is being delivered to the battery at each moment during the charging process.
 Power is:\
             *P(t) = V(t)I(t)*\
@@ -56,7 +56,7 @@ With *dE / dt = P(t)* the total energy delivered is the integral\
 ~~code~~\
 ~~image~~\
 
-## Power loss due to Resistance
+## Power Loss due to Resistance
 Apply Joule's Law:\
   With Ohm's law *V = IR*\
   The heating formula estimating power loss in watts is given as:\
