@@ -1,5 +1,5 @@
 # batterycharging_team8
-**Descriptions**
+**Description**
 A MATLAB project that simulates lithium-ion battery charging with an RC circuit model. It includes plots and analysis of energy loss, and performance. The goal is to model lithium-ion battery charging profiles as a simplified RC circuits using real-world voltage data. By fitting the standard capacitor charging equation *V(t) = V<sub>max</sub>(1 - e<sup>-t/RC</sup>)* to the real dataset, we aim to model the charging behavior, accompanying the goodness-of-fit statistics for this RC circuit approximation.
 
 ## Methodologies
