@@ -3,6 +3,7 @@ dataFile=matlab.internal.examples.downloadSupportFile("predmaint","batteryagingd
 unzip(dataFile)
 load("singleCellLifeTimeData.mat")
 head(data,5)
+
 %STEP 2-Select one battery cycle and only keep the period of time in which the battery was being charged
 cycleData=data(data.Cycle_Index==1,:);
 cycleData.DateTime=seconds(cycleData.DateTime-cycleData.DateTime(1));
@@ -54,6 +55,7 @@ opts.Upper = 100000;
 [fitobject,gof]=fit(t,V,rcEquation,opts);
 %Display fitted time constant
 fitobject
+
 %STEP 4-Plot the data and the fitted curve in the same figure 
 plot(fitobject,t,V);
 xlabel('Time (s)');
@@ -61,6 +63,9 @@ ylabel('Voltage (V)');
 title('Battery Charging Profile and RC Model Fit');
 legend('Voltage Measured','RC Model');
 grid on;
+
+exportgraphics(gcf, 'TASK1_RCModelFit.png', 'Resolution', 300);
+% To save the visualization as a PNG image.
 
 %STEP 5- Display the goodness of fit statistics
 gof
