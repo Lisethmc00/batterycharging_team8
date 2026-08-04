@@ -167,8 +167,6 @@ grid on
 % To save the visualization as a PNG image.
 exportgraphics(gcf, 'TASK3_CC_VS_CV_VOLTAGECURRENT.png', 'Resolution', 300);
 
-%%%% After adding this line to code in task 1: & segmentedRawDataTable.IsValid==true,:)
-%%%% Maybe this part is no needed.
 % Keep only valid charge data
 validCharge = chargeData.IsValid & ...
     chargeData.CyclingPhases == "Charge";
@@ -239,33 +237,39 @@ fprintf('Time to reach 100%% charge =%.6f s\n', time100);
 % Plot Charge Capacity vs Time
 
 figure
-plot(time, chargeData.Charge_Capacity, 'b', 'LineWidth', 1.5)
+
+% Convert time from seconds to hours
+time_Hours = time/3600;
+time_80Hours = time80/3600;
+time_100Hours = time100/3600;
+
+plot(time_Hours, chargeData.Charge_Capacity, 'b', 'LineWidth', 1.5)
 % To keep the current graph and add plots to it
 hold on
 
 % Mark the 80% charge point
 % The red circle identifies the point at which the battery reaches 80%
 % charge.
-plot(time80, chargeData.Charge_Capacity(charge80), 'ro', 'MarkerSize', 8, 'LineWidth', 2)
+plot(time_80Hours, chargeData.Charge_Capacity(charge80), 'ro', 'MarkerSize', 8, 'LineWidth', 2)
 
 % Mark the 100% charge point
 % The green circle identifies the point at which the battery reaches 100%
 % charge.
-plot(time100, chargeData.Charge_Capacity(charge100), 'go', 'MarkerSize', 8, 'LineWidth', 2)
+plot(time_100Hours, chargeData.Charge_Capacity(charge100), 'go', 'MarkerSize', 8, 'LineWidth', 2)
 
 % Display the points when the battery reaches 80% and 100% charge
 
-text(time80 + 30, chargeData.Charge_Capacity(charge80), + 0.01,'80%', 'Color', 'black')
+text(time_80Hours + 30, chargeData.Charge_Capacity(charge80), + 0.01,'80%', 'Color', 'black')
 
-text(time100 + 30, chargeData.Charge_Capacity(charge100), +0.01, '100%', 'Color', 'black')
+text(time_100Hours + 30, chargeData.Charge_Capacity(charge100), +0.01, '100%', 'Color', 'black')
 
 % Display the plot
-xlabel('Time (s)')
+xlabel('Time (h)')
 ylabel('Charge Capacity (Ah)')
 title('Charge Capacity vs Time')
 legend('Charge Capacity', '80% Charge' , '100% Charge', 'Location', 'southoutside')
 
-xlim([127 1945])
+xlim([min(time_Hours) max(time_Hours)])
 ylim([0.04 1.13])
 
 % To save the visualization as a PNG image.
