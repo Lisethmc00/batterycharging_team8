@@ -68,21 +68,13 @@ exportgraphics(gcf, 'TASK1_RCMODELFIT_MANUAL.png', 'Resolution', 300);
 %STEP 5- Display the goodness of fit statistics
 gof
 
-
-%%% STUFF ADDED BY LISETH%%%
-%%%WE CAN USE THIS TO ARGUE THE goodness of fit statistics%%%%
-This curved was created using the Curve Fitter APP 
-The equation used is: 
-                                        
-
-Note: Vmax = 3.6 V and Vo = 2.0326 V
 % Create RC Model Fit Plot
 
 DateTime = chargeData.DateTime;
 Voltage = chargeData.Voltage;
 
 
-[fitresult, gof] = createRC_Curve(DateTime, Voltage);
+[fitresult, gof] = CREATE_RC_CURVE(DateTime, Voltage);
 
 xlim("auto")
 ylim("auto")
@@ -114,8 +106,6 @@ FitStats = table( ...
     {'Tau_s','Rsquare','AdjustedRsquare','RMSE','SSE'});
 
 FitStats
-Note: R^2 is 0.7294
-This value changed!
 
 % Tau the time constant
 
