@@ -25,6 +25,7 @@ This code section plots the charging voltage response of a simple RC circuit acr
 *tau = RC* is the time constant of the RC circuit *time it takes to reach 63.2% of the maximum voltage which is 3.6v*, together with time *t*, were the two parameters used to fit the voltage data.\
 Using the MATLAB function ```[fitobject,gof]=fit(x,y,fite,fitOptions)```, *tau* is determined to 4.429seconds.
 ![graph](VISUALIZATIONS/TASK1_RCCURVE_TIMECONSTANT.png)\
+*Note: from now on, we filtered out the data such that no data that has "undefined" in it's column remains.*\
 Current decreasing as voltage rises, and power as the product of voltage and current trends similar to that of the graph for current.\
 ![graph](VISUALIZATIONS/TASK2_PLOTS_VOLTAGECURRENTPOWER_VS_TIME.png)\
 Analyzing the goodness of fit statistics using the ```gof``` command, the fit yields a r-squared value of 0.729, which is good indicator of the correlation in the data, the error can partly to attributed to the regions of CC and CV phase.\
