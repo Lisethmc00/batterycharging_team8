@@ -32,24 +32,28 @@ For a standard Li-ion battery, it is typically charged using a Constant Current 
 ![graph](VISUALIZATIONS/TASK3_CC_VS_CV_VOLTAGECURRENT.png)\
 The battery charges quickly at first while protecting it from overvoltage and excessive temperature from the inrush current, improving safety and battery lifespan. This process is usually controlled by a battery management system, which continuously monitors the battery's voltage and current.\
 The behavior of a RC circuit during charging would predict that for a capacitor, the current is proportional to the rate of the change of the voltage by a constant *C*.\
-*i = C <ins>dv</ins><sub>dt</sub>*\
+*i = C dv/dt*\
 Because the capacitor acts a short circuit when uncharged, the current flow is maximum at the beginning, although controlled, we can still see the voltage climbing in an ideal fashion, before about 250seconds.\
 The current then gradually steps down to prevent overheating the battery as excessive current creates power loss. When the capacitor's voltage almost reaches the supply voltage, the charging profile changes to CV, where a standard RC charging circuit is clearly present; as the voltage tops near the maximum voltage, the current drops exponentially similar to that of the ideal model for current.
 
 ## Charge capacity over time
-![graph](VISUALIZATIONS/TASK3_CHARGECAPACITY_80_100.png)
+![graph](VISUALIZATIONS/TASK3_CHARGECAPACITY_80_100.png)\
+We see how the battery is most efficiently charged for the first 80%.
+It takes about 9 minutes to charge 80% and then takes an additional 21 minutes to charge to 100%.\
+Previously we saw how the battery changes from CC to CV at about t = 20 minutes. This is reasonably expected because as the voltage approaches the battery maximum voltage, the charging exponentially tips off.
 
 ## Rate of Change at Key Intervals
 We computed the rate of the change of voltage with respect to time ```dVdt= gradient(voltage, time)```, we expect to see the derivative of voltage vs time to resembles a form more or less like that of the current.\
 ![graph](VISUALIZATIONS/TASK3_DVDT_COMPUTED_VS_RAW.png)\
-Initially, the voltage climb similar to that of RC model would predicts, and we can see dv/dt exponentially dips. The two steep negative slopes where the current abruptly drops in the constant current phase are clearly present; the voltage is controlled to be lowered causing the current to dip accordingly. The current is held steady from about 600seconds to 1200seconds?
+Initially, the voltage climb similar to that of RC model would predicts, and we can see dv/dt exponentially dips. Then the two steep negative slopes where the current abruptly drops in the constant current phase are clearly present; the voltage is controlled to be lowered causing the current to decrease accordingly. And evidently, during the constant current phase, the rate of change of current is mostly zero, aligning with what a RC model would predict. Eventually, the constant voltage phase began at about 20 minutes in, which cause the current to increase exponentially, and thus a positive value for dv/dt.
 
 ## Power Delivered to the Battery
 The instantaneous power tells us how fast electrical energy is being delivered to the battery at each moment during the charging process.
 Power is:\
             *P(t) = V(t)I(t)*\
 With *dE / dt = P(t)* the total energy delivered is the integral\
-![graph](VISUALIZATIONS/TASK3_POWERTIMECURVE_ENERGY.png)
+![graph](VISUALIZATIONS/TASK3_POWERTIMECURVE_ENERGY.png)\
+This aligns with how the battery is most efficiently charged for the first 80% of the charge. We can see how the battery, during constant current phase, delivers the most power, and the exponentially decaying region is constant voltage took place.
 
 ## Power Loss due to Resistance
 Apply Joule's Law:\
@@ -64,8 +68,7 @@ Alternatively, a higher maximum battery voltage allows the same charging power t
 
 ## Summary
 Originally, we considered V<sub>0</sub> to be zero as expected of off a standard ideal RC charging circuit, which had led to a huge peak at the initial time. After fixing the mistake, we produced much more reasonable plot for dv/dt and improved our r-squared value for the fitted voltage plot from 0.229 to 0.729.
-We have not yet explored the impact of recycling usage of the Li-ion battery across multiple charging and discharging cycles.\
-
-More advanced analytics using MATLAB can be intergraded into the battery management system that learns the specifics of the battery across cycles, and makes more beneficial decisions on the exact value used in CC phase, and to monitor the battery health and degradation over time.
+We have not yet explored the impact of recycling usage of the Li-ion battery across multiple charging and discharging cycles. However, most importantly, the RC model alone can predict the constant voltage phase neatly but struggles a little to predict the constant current phase as the voltage is manually controlled.\
+More advanced analytics using MATLAB can be intergraded into the battery management system that learns the specifics of the battery across cycles and makes more beneficial decisions on the exact value used in CC phase, and to monitor the battery health and degradation over time.
 
 
